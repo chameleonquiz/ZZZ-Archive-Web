@@ -1,30 +1,28 @@
 <template>
-  <v-col>
-    <v-carousel
-      height="300"
-      show-arrows="hover"
-      cycle
-      hide-delimiter-background
-      hide-delimiters
-      v-if="items.length > 0"
-      :key="carouselKey"
-    >
-      <v-carousel-item v-for="(item, i) in items" :key="i">
-        <v-card flat tile rounded="xl" @click="navigateTo(item.link)">
-          <v-img :src="item.imgSrc" max-height="300">
-            <v-row class="fill-height" align="end">
-              <v-col
-                class="text-center white--text"
-                style="background-color: rgba(0, 0, 0, 0.5)"
-              >
-                {{ item.title }}
-              </v-col>
-            </v-row>
-          </v-img>
-        </v-card>
-      </v-carousel-item>
-    </v-carousel>
-  </v-col>
+  <v-carousel
+    class="forums-panel-carousel"
+    show-arrows="hover"
+    cycle
+    hide-delimiter-background
+    hide-delimiters
+    v-if="items.length > 0"
+    :key="carouselKey"
+  >
+    <v-carousel-item v-for="(item, i) in items" :key="i">
+      <v-card flat tile rounded="xl" @click="navigateTo(item.link)" class="h-100">
+        <v-img :src="item.imgSrc" class="h-100">
+          <v-row class="fill-height" align="end">
+            <v-col
+              class="text-center white--text"
+              style="background-color: rgba(0, 0, 0, 0.5)"
+            >
+              {{ item.title }}
+            </v-col>
+          </v-row>
+        </v-img>
+      </v-card>
+    </v-carousel-item>
+  </v-carousel>
 </template>
 
 <script>
@@ -58,10 +56,5 @@ export default {
 </script>
 
 <style scoped>
-.v-img {
-  position: relative;
-}
-.v-col {
-  padding: 0;
-}
+@import "@/styles/forums-panels.scss";
 </style>

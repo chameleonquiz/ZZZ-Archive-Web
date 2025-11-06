@@ -1,72 +1,68 @@
 <template>
-  <v-row>
-    <v-col>
-      <v-card rounded="xl" class="position-relative" style="max-width: 100%">
-        <v-card-title
-          class="headline"
-          style="font-size: 1rem; display: flex; align-items: center"
-        >
-          Reddit Posts
-          <div style="margin-left: auto; display: flex; align-items: center">
-            <v-btn icon @click="scrollLeft">
-              <v-icon>mdi-chevron-left</v-icon>
-            </v-btn>
-            <v-btn icon @click="scrollRight">
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-btn>
-          </div>
-        </v-card-title>
-        <div
-          ref="scrollContainer"
-          class="scroll-container"
-          @scroll="handleScroll"
-          style="overflow-x: auto; white-space: nowrap"
-        >
-          <div
-            v-for="(item, i) in items"
-            :key="i"
-            class="d-inline-block mx-2 text-left"
-            style="width: 160px"
-          >
-            <a :href="item.link" target="_blank">
-              <template v-if="isVideo(item.image)">
-                <video
-                  :src="item.image"
-                  height="160"
-                  width="160"
-                  class="d-block mx-auto"
-                  controls
-                ></video>
-              </template>
-              <template v-else>
-                <v-img
-                  v-if="item.image"
-                  :src="item.image"
-                  height="160"
-                  width="160"
-                  class="d-block mx-auto"
-                ></v-img>
-                <v-img
-                  v-else
-                  :src="generatePlaceholderImage(item.title)"
-                  height="160"
-                  width="160"
-                  class="d-block mx-auto"
-                ></v-img>
-              </template>
-            </a>
-            <div class="text-ellipsis">{{ item.title }}</div>
-            <div class="d-flex align-items-center">
-              <v-icon>mdi-thumb-up</v-icon>
-              <span class="ml-2">{{ item.upvotes }}</span>
-              <v-icon class="ml-4">mdi-comment</v-icon>
-              <span class="ml-2">{{ item.comments }}</span>
-            </div>
-          </div>
+  <v-card rounded="xl" class="position-relative forums-panel" style="max-width: 100%">
+    <v-card-title
+      class="headline"
+      style="font-size: 1rem; display: flex; align-items: center"
+    >
+      Reddit Posts
+      <div style="margin-left: auto; display: flex; align-items: center">
+        <v-btn icon @click="scrollLeft">
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+        <v-btn icon @click="scrollRight">
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </div>
+    </v-card-title>
+    <div
+      ref="scrollContainer"
+      class="forums-panel-scroll"
+      @scroll="handleScroll"
+      style="overflow-x: auto; white-space: nowrap; padding: 0 8px;"
+    >
+      <div
+        v-for="(item, i) in items"
+        :key="i"
+        class="d-inline-block mx-1 text-left"
+        style="width: 160px"
+      >
+        <a :href="item.link" target="_blank">
+          <template v-if="isVideo(item.image)">
+            <video
+              :src="item.image"
+              height="160"
+              width="160"
+              class="d-block mx-auto"
+              controls
+            ></video>
+          </template>
+          <template v-else>
+            <v-img
+              v-if="item.image"
+              :src="item.image"
+              height="160"
+              width="160"
+              class="d-block mx-auto"
+            ></v-img>
+            <v-img
+              v-else
+              :src="generatePlaceholderImage(item.title)"
+              height="160"
+              width="160"
+              class="d-block mx-auto"
+            ></v-img>
+          </template>
+        </a>
+        <div class="text-ellipsis">{{ item.title }}</div>
+        <div class="d-flex align-items-center">
+          <v-icon>mdi-thumb-up</v-icon>
+          <span class="ml-2">{{ item.upvotes }}</span>
+          <v-icon class="ml-4">mdi-comment</v-icon>
+          <span class="ml-2">{{ item.comments }}</span>
         </div>
-      </v-card>
-    </v-col>
-  </v-row>
+      </div>
+    </div>
+  </v-card>
 </template>
 
 <script>
@@ -145,13 +141,16 @@ export default {
 </script>
 
 <style scoped>
+@import "@/styles/forums-panels.scss";
+
 .text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 150px;
 }
-.scroll-container {
+
+.forums-panel-scroll {
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
