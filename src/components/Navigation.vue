@@ -117,30 +117,6 @@ export default {
       menuItems: [
         { icon: "mdi-home", title: "首頁", value: "", type: "internal" },
         {
-          icon: "mdi-account-multiple-outline",
-          title: "代理人",
-          value: "agent",
-          type: "internal",
-        },
-        {
-          icon: "mdi-knife-military",
-          title: "音擎",
-          value: "w-engine",
-          type: "internal",
-        },
-        {
-          icon: "mdi-tshirt-crew-outline",
-          title: "驅動光碟",
-          value: "driver",
-          type: "internal",
-        },
-        {
-          icon: "mdi-map-outline",
-          title: "邦布",
-          value: "bangboo",
-          type: "internal",
-        },
-        {
           icon: "mdi-cog-outline",
           title: "設定",
           value: "settings",

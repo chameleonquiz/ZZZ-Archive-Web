@@ -14,14 +14,9 @@
         <Profile />
         <ImageCard />
         <PixivCard />
-        <Scratch />
       </v-col>
       <v-col cols="12" md="6" class="d-flex flex-column">
         <Forums class="flex-grow-1" />
-        <ImageCard category="Agent" filterBy="IconRoleCircle" />
-        <ImageCard category="Bangboo" filterBy="540" />
-        <ImageCard category="W-Engine" filterBy="Big" />
-        <ImageCard category="Driver" filterBy="Big" />
       </v-col>
     </v-row>
   </v-container>
