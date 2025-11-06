@@ -8,6 +8,7 @@
         show-arrows="hover"
         cycle
         hide-delimiter-background
+        hide-delimiters
         ref="carousel"
       >
         <v-carousel-item v-for="(newsItem, i) in newsList" :key="i">
@@ -40,7 +41,7 @@ export default {
     async fetchNewsData() {
       try {
         const response = await fetch(
-          "https://cloudflare-cors-anywhere.zzz-archive-back-end.workers.dev/?https://sg-public-api-static.hoyoverse.com/content_v2_user/app/3e9196a4b9274bd7/getContentList?iPageSize=5&iPage=1&iChanId=288&sLangKey=zh-tw"
+          "https://api.zzz-archive.com/news/zh-tw"
         );
 
         if (!response.ok) {
@@ -50,9 +51,9 @@ export default {
         const data = await response.json();
         //console.log("API Response:", data);
 
-        this.newsList = data.data.list.map((item) => ({
+        this.newsList = data.map((item) => ({
           iInfoId: item.iInfoId,
-          imageUrl: JSON.parse(item.sExt)["news-banner"][0].url,
+          imageUrl: item.imageUrl,
         }));
 
         // 强制重新渲染 v-carousel
