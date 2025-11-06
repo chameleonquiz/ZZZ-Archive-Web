@@ -22,7 +22,12 @@
 </template>
 
 <script>
+import News from "@/components/news.vue";
+
 export default {
+  components: {
+    News,
+  },
   data() {
   },
 };

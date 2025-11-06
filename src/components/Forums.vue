@@ -1,7 +1,12 @@
 <template>
   <v-row>
     <v-col>
-      <component :is="selectedComponent" :items="items[selectedComponent]" />
+      <div class="component-container">
+        <component 
+          :is="selectedComponent" 
+          :items="selectedComponent === 'News' ? undefined : items[selectedComponent]" 
+        />
+      </div>
       <v-chip-group v-model="selectedComponent" column mandatory>
         <v-chip
           v-for="component in components"
@@ -22,6 +27,7 @@ import NGAList from "./Nga.vue";
 import PTTList from "./Ptt.vue";
 import XPosts from "./X.vue";
 import RedditPosts from "./Reddit.vue";
+import News from "./news.vue";
 
 export default {
   name: "ParentComponent",
@@ -31,6 +37,7 @@ export default {
     PTTList,
     XPosts,
     RedditPosts,
+    News,
   },
   data() {
     return {
@@ -41,6 +48,7 @@ export default {
         { text: "PTT", value: "PTTList" },
         { text: "X", value: "XPosts" },
         { text: "Reddit", value: "RedditPosts" },
+        { text: "新聞", value: "News" },
       ],
       items: {
         Bahamut: [],
@@ -96,3 +104,47 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.component-container {
+  min-height: 400px; /* Consistent minimum height for all components */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure consistent carousel heights across different components */
+.component-container :deep(.v-carousel) {
+  height: 300px !important;
+}
+
+/* For X and Reddit component scrollable content */
+.component-container :deep(.scroll-container) {
+  max-height: 300px;
+}
+
+/* For list components (NGA, PTT) */
+.component-container :deep(.scrollable-list) {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Ensure card content fits within the container */
+.component-container :deep(.v-card) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .component-container {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .component-container {
+    min-height: 320px;
+  }
+}
+</style>
