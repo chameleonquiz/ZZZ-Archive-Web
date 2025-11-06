@@ -1,0 +1,52 @@
+/**
+ * Forums Panel Heights
+ * Normalizes heights across all switchable components in Forums.vue
+ */
+
+.forums-panel {
+  --forums-panel-h-sm: 360px;
+  --forums-panel-h-md: 420px;
+  --forums-panel-h-lg: 480px;
+  
+  height: var(--forums-panel-h-sm);
+  
+  @media (min-width: 960px) {
+    height: var(--forums-panel-h-md);
+  }
+  
+  @media (min-width: 1280px) {
+    height: var(--forums-panel-h-lg);
+  }
+}
+
+// Apply to carousel components specifically
+.forums-panel-carousel {
+  height: var(--forums-panel-h-sm);
+  
+  @media (min-width: 960px) {
+    height: var(--forums-panel-h-md);
+  }
+  
+  @media (min-width: 1280px) {
+    height: var(--forums-panel-h-lg);
+  }
+  
+  // Ensure images cover the carousel area properly
+  :deep(.v-img) {
+    object-fit: cover;
+  }
+}
+
+// For scrollable content containers
+.forums-panel-scroll {
+  height: var(--forums-panel-h-sm);
+  overflow-y: auto;
+  
+  @media (min-width: 960px) {
+    height: var(--forums-panel-h-md);
+  }
+  
+  @media (min-width: 1280px) {
+    height: var(--forums-panel-h-lg);
+  }
+}

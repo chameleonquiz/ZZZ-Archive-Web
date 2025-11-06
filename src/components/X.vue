@@ -1,65 +1,61 @@
 <template>
-  <v-row>
-    <v-col>
-      <v-card rounded="xl" class="position-relative" style="max-width: 100%">
-        <v-card-title
-          class="headline"
-          style="font-size: 1rem; display: flex; align-items: center"
-        >
-          X Posts
-          <div style="margin-left: auto; display: flex; align-items: center">
-            <v-btn icon @click="scrollLeft">
-              <v-icon>mdi-chevron-left</v-icon>
-            </v-btn>
-            <v-btn icon @click="scrollRight">
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-btn>
-          </div>
-        </v-card-title>
-        <div
-          ref="scrollContainer"
-          class="scroll-container"
-          @scroll="handleScroll"
-          style="overflow-x: auto; white-space: nowrap"
-        >
-          <div
-            v-for="(item, i) in items"
-            :key="i"
-            class="d-inline-block mx-2 text-left"
-            style="width: 160px"
+  <v-card rounded="xl" class="position-relative forums-panel" style="max-width: 100%">
+    <v-card-title
+      class="headline"
+      style="font-size: 1rem; display: flex; align-items: center"
+    >
+      X Posts
+      <div style="margin-left: auto; display: flex; align-items: center">
+        <v-btn icon @click="scrollLeft">
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+        <v-btn icon @click="scrollRight">
+          <v-icon>mdi-chevron-right</v-icon>
+        </v-btn>
+      </div>
+    </v-card-title>
+    <div
+      ref="scrollContainer"
+      class="forums-panel-scroll"
+      @scroll="handleScroll"
+      style="overflow-x: auto; white-space: nowrap; padding: 0 8px;"
+    >
+      <div
+        v-for="(item, i) in items"
+        :key="i"
+        class="d-inline-block mx-1 text-left"
+        style="width: 160px"
+      >
+        <!-- 標題放在圖片上方 -->
+        <div class="text-ellipsis mb-1">{{ item.title }}</div>
+        <!-- 圖片 -->
+        <a :href="item.link" target="_blank">
+          <v-img
+            :src="item.image || generatePlaceholderImage(item.title)"
+            height="160"
+            width="160"
+            class="d-block mx-auto"
+          ></v-img>
+        </a>
+        <!-- 作者名稱和 Icon -->
+        <div class="author-section mt-1">
+          <v-icon
+            class="author-icon"
+            small
+            @click="openAuthorProfile(item.authorProfile)"
           >
-            <!-- 標題放在圖片上方 -->
-            <div class="text-ellipsis mb-1">{{ item.title }}</div>
-            <!-- 圖片 -->
-            <a :href="item.link" target="_blank">
-              <v-img
-                :src="item.image || generatePlaceholderImage(item.title)"
-                height="160"
-                width="160"
-                class="d-block mx-auto"
-              ></v-img>
-            </a>
-            <!-- 作者名稱和 Icon -->
-            <div class="author-section mt-1">
-              <v-icon
-                class="author-icon"
-                small
-                @click="openAuthorProfile(item.authorProfile)"
-              >
-                mdi-account
-              </v-icon>
-              <span
-                class="text-ellipsis author-name"
-                @click="openAuthorProfile(item.authorProfile)"
-              >
-                {{ item.author }}
-              </span>
-            </div>
-          </div>
+            mdi-account
+          </v-icon>
+          <span
+            class="text-ellipsis author-name"
+            @click="openAuthorProfile(item.authorProfile)"
+          >
+            {{ item.author }}
+          </span>
         </div>
-      </v-card>
-    </v-col>
-  </v-row>
+      </div>
+    </div>
+  </v-card>
 </template>
 
 <script>
@@ -127,10 +123,12 @@ export default {
 </script>
 
 <style scoped>
+@import "@/styles/forums-panels.scss";
+
 .author-section {
   display: flex;
   align-items: center;
-  gap: 4px; /* Icon 與文字間距 */
+  gap: 4px;
   cursor: pointer;
 }
 
@@ -143,8 +141,9 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 120px; /* 限制名稱寬度 */
+  max-width: 120px;
 }
+
 .text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -160,7 +159,7 @@ export default {
   margin-top: 4px;
 }
 
-.scroll-container {
+.forums-panel-scroll {
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
