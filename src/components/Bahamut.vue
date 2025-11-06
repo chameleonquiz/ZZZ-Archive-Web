@@ -5,6 +5,7 @@
       show-arrows="hover"
       cycle
       hide-delimiter-background
+      hide-delimiters
       v-if="items.length > 0"
       :key="carouselKey"
     >

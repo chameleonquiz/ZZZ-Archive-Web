@@ -55,8 +55,6 @@
                 {{ item.author }}
               </span>
             </div>
-            <!-- Hashtag -->
-            <div class="text-ellipsis mt-1">{{ item.hashtag }}</div>
           </div>
         </div>
       </v-card>

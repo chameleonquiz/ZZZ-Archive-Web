@@ -12,7 +12,6 @@
       <v-col cols="12" md="6" class="d-flex flex-column">
         <News class="flex-grow-1" />
         <Profile />
-        <ImageCard />
         <PixivCard />
       </v-col>
       <v-col cols="12" md="6" class="d-flex flex-column">
